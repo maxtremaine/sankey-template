@@ -2,6 +2,7 @@
     <style>
         path {
             fill: none;
+            stroke: black;
         }
     </style>
     <path d="M 5,5
