@@ -1,28 +1,12 @@
 <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
     <style>
-        path {
-            fill: none;
-        }
-        path.green {
-            stroke: LightGreen;
-        }
-        path.red {
-            stroke: LightPink;
-        }
-
-        text {
-            font-size: 8px;
-        }
-        text.value {
-            fill: grey;
-        }
-
-        rect.green {
-            fill: green;
-        }
-        rect.red {
-            fill: red;
-        }
+        text { font-size: 8px; }
+        text.value { fill: grey; }
+        rect.green { fill: green; }
+        rect.red { fill: red; }
+        path { fill: none; }
+        path.green { stroke: LightGreen; }
+        path.red { stroke: LightPink; }
     </style>
 
     <text x="10" y="5" class="label">Subscriptions</text>
