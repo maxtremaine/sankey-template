@@ -1,0 +1,178 @@
+
+
+<!DOCTYPE html>
+<html><head>
+<script defer="">
+    const spec = "http://www.w3.org/2000/svg";
+    document.addEventListener('DOMContentLoaded', function() {
+        Account('Subscriptions', '$45M')
+            .position(10, 5)
+            .size(60)
+            .addLine(40, 50, 120, 90)
+            .render();
+        Account('Services', '$26M')
+            .position(10, 102.5)
+            .size(35)
+            .addLine(40, 135, 120, 137)
+            .render();
+        Account('Merch', '$7M')
+            .position(10, 162.5)
+            .size(5)
+            .addLine(40, 180, 120, 157)
+            .render();
+    });
+
+    function Account(label, value) {
+        this.label = label
+        this.value = value
+        this.x = 20
+        this.y = 20
+        this.width = 30
+        this.boxHeight = 1
+        this.lineHeight = 1
+        this.class = "green"
+        this.x1 = null
+        this.y1 = null
+        this.x2 = null
+        this.y2 = null
+
+        if(!new.target) {
+             return new Account(label, value)
+        }
+    }
+
+    Account.prototype.position = function(x, y) {
+        this.x = x
+        this.y = y
+        return this
+    }
+
+    Account.prototype.size = function(height) {
+        this.boxHeight = height
+        this.lineHeight = height
+        return this
+    }
+
+    Account.prototype.color = function(color) {
+        this.color = color
+        return this
+    } 
+
+    Account.prototype.addLine = function(x1, y1, x2, y2) {
+        this.x1 = x1
+        this.y1 = y1
+        this.x2 = x2
+        this.y2 = y2
+        return this
+    }
+
+    Account.prototype.render = function() {
+        const diagram = document.querySelector('svg')
+
+        const label = document.createElementNS(spec, "text")
+        label.setAttribute('x', this.x)
+        label.setAttribute('y', this.y)
+        label.setAttribute('class', 'label')
+        label.appendChild(document.createTextNode(this.label))
+        diagram.appendChild(label)
+
+        const value = document.createElementNS(spec, "text")
+        value.setAttribute('x', this.x)
+        value.setAttribute('y', this.y + 10)
+        value.setAttribute('class', 'value')
+        value.appendChild(document.createTextNode(this.value))
+        diagram.appendChild(value)
+
+        const box = document.createElementNS(spec, "rect")
+        box.setAttribute('x', this.x)
+        box.setAttribute('y', this.y + 15)
+        box.setAttribute('width', this.width)
+        box.setAttribute('height', this.height)
+        box.setAttribute('class', this.class)
+        diagram.appendChild(box)
+
+        if(![this.x1, this.x2, this.y1, this.y2].includes(null)) {
+            const line = document.createElementNS(spec, 'path')
+            const x1 = this.x1
+            const y1 = this.y1
+            const x2 = this.x2
+            const y2 = this.y2
+            const xMid = x2 - (x2 - x1) / 2
+            line.setAttribute('d', `M ${x1},${y1} C ${xMid},${y1} ${xMid},${y2} ${x2},${y2}`)
+            line.setAttribute('stroke-width', this.height)
+            line.setAttribute('class', this.class)
+            diagram.appendChild(line)
+        }
+
+        return this
+    }
+</script>
+</head>
+<body>
+<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        text { font-size: 8px; }
+        text.value { fill: grey; }
+        rect.green { fill: green; }
+        rect.red { fill: red; }
+        path { fill: none; }
+        path.green { stroke: LightGreen; }
+        path.red { stroke: LightPink; }
+    </style>
+
+
+    <text x="120" y="175" class="label">Refunds</text>
+    <text x="120" y="185" class="value">$3M</text>
+    <rect x="120" y="188.5" width="30" height="3" class="red"></rect>
+    <path d="M 40,184
+        C 80,184 80,190 120,190" stroke-width="3" class="red"></path>
+
+    <text x="120" y="45" class="label">Revenue</text>
+    <text x="120" y="55" class="value">$75M</text>
+    <rect x="120" y="60" width="30" height="100" class="green"></rect>
+
+    <text x="230" y="25" class="label">Variable Cloud</text>
+    <text x="230" y="35" class="value">$15M</text>
+    <rect x="230" y="40" width="30" height="20" class="red"></rect>
+    <path d="M 150,70
+        C 190,70 190,50 230,50" stroke-width="20" class="red"></path>
+
+    <text x="230" y="70" class="label">Support</text>
+    <text x="230" y="80" class="value">$1M</text>
+    <rect x="230" y="85" width="30" height="1" class="red"></rect>
+    <path d="M 150,80.5
+        C 190,80.5 190,85.5 230,85.5" stroke-width="1" class="red"></path>
+
+    <text x="230" y="100" class="label">Gross Profit</text>
+    <text x="230" y="110" class="value">$59M</text>
+    <rect x="230" y="115" width="30" height="79" class="green"></rect>
+    <path d="M 150,120.5
+        C 190,120.5 190,154.5 230,154.5" stroke-width="79" class="green"></path>
+
+    <text x="340" y="10" class="label">Marketing</text>
+    <text x="340" y="20" class="value">$15M</text>
+    <rect x="340" y="25" width="30" height="20" class="red"></rect>
+    <path d="M 260,125
+        C 300,125 300,35 340,35" stroke-width="20" class="red"></path>
+
+    <text x="340" y="60" class="label">Development</text>
+    <text x="340" y="70" class="value">$8M</text>
+    <rect x="340" y="75" width="30" height="10" class="red"></rect>
+    <path d="M 260,140
+        C 300,140 300,80 340,80" stroke-width="10" class="red"></path>
+
+    <text x="340" y="100" class="label">Administration</text>
+    <text x="340" y="110" class="value">$1M</text>
+    <rect x="340" y="115" width="30" height="1" class="red"></rect>
+    <path d="M 260,145.5
+        C 300,145.5 300,115.5 340,115.5" stroke-width="1" class="red"></path>
+
+    <text x="340" y="130" class="label">EBITDA</text>
+    <text x="340" y="140" class="value">$35M</text>
+    <rect x="340" y="145" width="30" height="47" class="green"></rect>
+    <path d="M 260,170
+        C 300,170 300,168.5 340,168.5" stroke-width="47" class="green"></path>
+<text x="10" y="5" class="label">Subscriptions</text><text x="10" y="15" class="value">$45M</text><rect x="10" y="20" width="30" height="60" class="green"></rect></svg>
+
+
+</body></html>
