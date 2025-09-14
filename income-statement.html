@@ -5,6 +5,7 @@
 <script defer="">
     const spec = "http://www.w3.org/2000/svg";
     document.addEventListener('DOMContentLoaded', function() {
+        const relativeToRevenue = relativeBoxHeight(75, 100) 
         Account('Subscriptions', '$45M')
             .position(10, 5)
             .size(60)
@@ -17,10 +18,13 @@
             .render();
         Account('Merch', '$7M')
             .position(10, 162.5)
-            .size(5)
+            .size(8)
+            .lineSize(5)
             .addLine(40, 180, 120, 157)
             .render();
     });
+
+    const relativeBoxHeight = (baseValue, baseHeight) => (value) => value / baseValue * baseHeight 
 
     function Account(label, value) {
         this.label = label
@@ -53,8 +57,13 @@
         return this
     }
 
+    Account.prototype.lineSize = function(height) {
+        this.lineHeight = height
+        return this
+    } 
+
     Account.prototype.color = function(color) {
-        this.color = color
+        this.class = color
         return this
     } 
 
@@ -87,7 +96,7 @@
         box.setAttribute('x', this.x)
         box.setAttribute('y', this.y + 15)
         box.setAttribute('width', this.width)
-        box.setAttribute('height', this.height)
+        box.setAttribute('height', this.boxHeight)
         box.setAttribute('class', this.class)
         diagram.appendChild(box)
 
@@ -99,7 +108,7 @@
             const y2 = this.y2
             const xMid = x2 - (x2 - x1) / 2
             line.setAttribute('d', `M ${x1},${y1} C ${xMid},${y1} ${xMid},${y2} ${x2},${y2}`)
-            line.setAttribute('stroke-width', this.height)
+            line.setAttribute('stroke-width', this.lineHeight)
             line.setAttribute('class', this.class)
             diagram.appendChild(line)
         }
