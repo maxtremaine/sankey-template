@@ -2,76 +2,79 @@
 
 <!DOCTYPE html>
 <html><head>
+<style>
+    svg { border: 1px solid black; }
+</style>
 <script defer="">
     document.addEventListener('DOMContentLoaded', function() {
-        const [col1, col2, col3, col4] = [10, 150, 290, 430] 
+        const [col1, col2, col3, col4] = [20, 160, 300, 440] 
         const relativeToRevenue = relativeBoxHeight(75, 100) 
 
         Account('Subscriptions', '$45M')
-            .position(col1, 10)
+            .position(col1, 14)
             .size(relativeToRevenue(45))
-            .addLine(col1 + 30, 55, col2, 90)
+            .addLine(col1 + 30, 59, col2, 75)
             .render();
         Account('Services', '$26M')
-            .position(col1, 102.5)
+            .position(col1, 100)
             .size(relativeToRevenue(26))
-            .addLine(col1 + 30, 135, col2, 137)
+            .addLine(col1 + 30, 132.3, col2, 122.4)
             .render();
         Account('Merch', '$7M')
-            .position(col1, 162.5)
+            .position(col1, 161)
             .size(relativeToRevenue(7))
             .lineSize(5)
-            .addLine(col1 + 30, 180.1, col2, 157)
+            .addLine(col1 + 30, 178.6, col2, 142.3)
             .render();
         Account('Refunds', '$3M')
             .red()
-            .position(col2, 175)
+            .position(col2, 160)
             .size(relativeToRevenue(3))
-            .addLine(col1 + 30, 184.7, col2, 192)
+            .addLine(col1 + 30, 183.3, col2, 177)
             .render()
         Account('Revenue', '$75M')
-            .position(col2, 45)
+            .position(col2, 30)
             .size(100)
             .render()
         Account('Variable Cloud', '$15M')
             .red()
-            .position(col3, 25)
+            .position(col3, 14)
             .size(relativeToRevenue(15))
-            .addLine(col2 + 30, 70, col3, 50)
+            .addLine(col2 + 30, 55, col3, 39)
             .render()
         Account('Support', '$1M')
             .red()
-            .position(col3, 70)
+            .position(col3, 60)
             .size(relativeToRevenue(1))
-            .addLine(col2 + 30, 80.5, col3, 85.5)
+            .addLine(col2 + 30, 65.7, col3, 75.7)
             .render()
         Account('Gross Profit', '$59M')
-            .position(col3, 100)
+            .position(col3, 89)
             .size(relativeToRevenue(59))
-            .addLine(col2 + 30, 120.5, col3, 154.5)
+            .addLine(col2 + 30, 105.7, col3, 143.4)
             .render()
         Account('Marketing', '$15M')
             .red()
-            .position(col4, 10)
+            .position(col4, 14)
             .size(relativeToRevenue(15))
-            .addLine(col3 + 30, 125, col4, 35)
+            .addLine(col3 + 30, 114, col4, 38.9)
             .render()
         Account('Development', '$8M')
             .red()
-            .position(col4, 60)
+            .position(col4, 59)
             .size(relativeToRevenue(8))
-            .addLine(col3 + 30, 140, col4, 80)
+            .addLine(col3 + 30, 129.4, col4, 79.3)
             .render()
         Account('Administration', '$1M')
             .red()
-            .position(col4, 100)
+            .position(col4, 95)
             .size(relativeToRevenue(1))
-            .addLine(col3 + 30, 145.5, col4, 115.5)
+            .addLine(col3 + 30, 135.5, col4, 110.6)
             .render()
         Account('EBITDA', '$35M')
-            .position(col4, 130)
+            .position(col4, 125)
             .size(relativeToRevenue(35))
-            .addLine(col3 + 30, 170, col4, 168.5)
+            .addLine(col3 + 30, 159.4, col4, 163.4)
             .render()
     });
 
@@ -154,10 +157,7 @@
 
         if(![this.x1, this.x2, this.y1, this.y2].includes(null)) {
             const line = document.createElementNS(spec, 'path')
-            const x1 = this.x1
-            const y1 = this.y1
-            const x2 = this.x2
-            const y2 = this.y2
+            const [x1, y1, x2, y2] = [this.x1, this.y1, this.x2, this.y2]
             const xMid = x2 - (x2 - x1) / 2
             line.setAttribute('d', `M ${x1},${y1} C ${xMid},${y1} ${xMid},${y2} ${x2},${y2}`)
             line.setAttribute('stroke-width', this.lineHeight)
