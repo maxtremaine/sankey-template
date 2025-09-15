@@ -2,7 +2,7 @@
 
 A good place to start for making [Sankey Diagrams](https://en.wikipedia.org/wiki/Sankey_diagram).
 
-## Income Statement Template
+## Income Statement
 
 Take a look at [the Income Statement Template](https://github.com/maxtremaine/sankey-template/blob/main/income-statement-template.html) with inline documentation, also below.
 
