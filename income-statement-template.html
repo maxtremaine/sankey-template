@@ -18,9 +18,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // This is an account with a relative size and a manually placed line.
     Account('Subscriptions', '$45M')
-        .position(col1, 25)
-        .size(relativeToRevenue(45))
-        .addLine(col1 + 30, 72, col2, 97)
+        // .red() // Make the bar and line red instead of the default green.
+        .position(col1, 25) // x, y coordinates from the top left.
+        .size(relativeToRevenue(45)) // Box and line height. Use .lineSize() if you want the line to be shorter.
+        .addLine(col1 + 30, 72, col2, 97) // x1, y1, x2, y2 for the line. You can see how it is made in the source at the bottom of the file.
         .render();
 
     // An arbitrary number of Accounts can be added.
