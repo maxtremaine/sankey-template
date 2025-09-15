@@ -8,21 +8,71 @@
         const relativeToRevenue = relativeBoxHeight(75, 100) 
 
         Account('Subscriptions', '$45M')
-            .position(10, 5)
-            .size(60)
+            .position(col1, 5)
+            .size(relativeToRevenue(45))
             .addLine(40, 50, 120, 90)
             .render();
         Account('Services', '$26M')
-            .position(10, 102.5)
-            .size(35)
+            .position(col1, 102.5)
+            .size(relativeToRevenue(26))
             .addLine(40, 135, 120, 137)
             .render();
         Account('Merch', '$7M')
-            .position(10, 162.5)
-            .size(8)
+            .position(col1, 162.5)
+            .size(relativeToRevenue(7))
             .lineSize(5)
             .addLine(40, 180, 120, 157)
             .render();
+        Account('Refunds', '$3M')
+            .red()
+            .position(col2, 175)
+            .size(relativeToRevenue(3))
+            .addLine(40, 185, 120, 192)
+            .render()
+        Account('Revenue', '$75M')
+            .position(col2, 45)
+            .size(100)
+            .render()
+        Account('Variable Cloud', '$15M')
+            .red()
+            .position(col3, 25)
+            .size(relativeToRevenue(15))
+            .addLine(150, 70, 230, 50)
+            .render()
+        Account('Support', '$1M')
+            .red()
+            .position(col3, 70)
+            .size(relativeToRevenue(1))
+            .addLine(150, 80.5, 230, 85.5)
+            .render()
+        Account('Gross Profit', '$59M')
+            .position(col3, 100)
+            .size(relativeToRevenue(59))
+            .addLine(150, 120.5, 230, 154.5)
+            .render()
+        Account('Marketing', '$15M')
+            .red()
+            .position(col4, 10)
+            .size(relativeToRevenue(15))
+            .addLine(260, 125, 340, 35)
+            .render()
+        Account('Development', '$8M')
+            .red()
+            .position(col4, 60)
+            .size(relativeToRevenue(8))
+            .addLine(260, 140, 340, 80)
+            .render()
+        Account('Administration', '$1M')
+            .red()
+            .position(col4, 100)
+            .size(relativeToRevenue(1))
+            .addLine(260, 145.5, 340, 115.5)
+            .render()
+        Account('EBITDA', '$35M')
+            .position(col4, 130)
+            .size(relativeToRevenue(35))
+            .addLine(260, 170, 340, 168.5)
+            .render()
     });
 
     const relativeBoxHeight = (baseValue, baseHeight) => (value) => value / baseValue * baseHeight 
@@ -63,8 +113,8 @@
         return this
     } 
 
-    Account.prototype.color = function(color) {
-        this.class = color
+    Account.prototype.red = function() {
+        this.class = 'red'
         return this
     } 
 
@@ -130,60 +180,4 @@
         path.green { stroke: LightGreen; }
         path.red { stroke: LightPink; }
     </style>
-
-
-    <text x="120" y="175" class="label">Refunds</text>
-    <text x="120" y="185" class="value">$3M</text>
-    <rect x="120" y="188.5" width="30" height="3" class="red"></rect>
-    <path d="M 40,184
-        C 80,184 80,190 120,190" stroke-width="3" class="red"></path>
-
-    <text x="120" y="45" class="label">Revenue</text>
-    <text x="120" y="55" class="value">$75M</text>
-    <rect x="120" y="60" width="30" height="100" class="green"></rect>
-
-    <text x="230" y="25" class="label">Variable Cloud</text>
-    <text x="230" y="35" class="value">$15M</text>
-    <rect x="230" y="40" width="30" height="20" class="red"></rect>
-    <path d="M 150,70
-        C 190,70 190,50 230,50" stroke-width="20" class="red"></path>
-
-    <text x="230" y="70" class="label">Support</text>
-    <text x="230" y="80" class="value">$1M</text>
-    <rect x="230" y="85" width="30" height="1" class="red"></rect>
-    <path d="M 150,80.5
-        C 190,80.5 190,85.5 230,85.5" stroke-width="1" class="red"></path>
-
-    <text x="230" y="100" class="label">Gross Profit</text>
-    <text x="230" y="110" class="value">$59M</text>
-    <rect x="230" y="115" width="30" height="79" class="green"></rect>
-    <path d="M 150,120.5
-        C 190,120.5 190,154.5 230,154.5" stroke-width="79" class="green"></path>
-
-    <text x="340" y="10" class="label">Marketing</text>
-    <text x="340" y="20" class="value">$15M</text>
-    <rect x="340" y="25" width="30" height="20" class="red"></rect>
-    <path d="M 260,125
-        C 300,125 300,35 340,35" stroke-width="20" class="red"></path>
-
-    <text x="340" y="60" class="label">Development</text>
-    <text x="340" y="70" class="value">$8M</text>
-    <rect x="340" y="75" width="30" height="10" class="red"></rect>
-    <path d="M 260,140
-        C 300,140 300,80 340,80" stroke-width="10" class="red"></path>
-
-    <text x="340" y="100" class="label">Administration</text>
-    <text x="340" y="110" class="value">$1M</text>
-    <rect x="340" y="115" width="30" height="1" class="red"></rect>
-    <path d="M 260,145.5
-        C 300,145.5 300,115.5 340,115.5" stroke-width="1" class="red"></path>
-
-    <text x="340" y="130" class="label">EBITDA</text>
-    <text x="340" y="140" class="value">$35M</text>
-    <rect x="340" y="145" width="30" height="47" class="green"></rect>
-    <path d="M 260,170
-        C 300,170 300,168.5 340,168.5" stroke-width="47" class="green"></path>
-<text x="10" y="5" class="label">Subscriptions</text><text x="10" y="15" class="value">$45M</text><rect x="10" y="20" width="30" height="60" class="green"></rect></svg>
-
-
 </body></html>
