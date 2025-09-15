@@ -7,77 +7,91 @@
 </style>
 <script defer="">
     document.addEventListener('DOMContentLoaded', function() {
-        const [col1, col2, col3, col4] = [20, 160, 300, 440] 
+        const [col1, col2, col3, col4] = [20, 155, 290, 425] 
         const relativeToRevenue = relativeBoxHeight(75, 100) 
 
         Account('Subscriptions', '$45M')
-            .position(col1, 14)
+            .position(col1, 25)
             .size(relativeToRevenue(45))
-            .addLine(col1 + 30, 59, col2, 75)
+            .addLine(col1 + 30, 72, col2, 97)
             .render();
         Account('Services', '$26M')
-            .position(col1, 100)
+            .position(col1, 126)
             .size(relativeToRevenue(26))
-            .addLine(col1 + 30, 132.3, col2, 122.4)
+            .addLine(col1 + 30, 160.4, col2, 144.4)
             .render();
         Account('Merch', '$7M')
-            .position(col1, 161)
+            .position(col1, 200)
             .size(relativeToRevenue(7))
             .lineSize(5)
-            .addLine(col1 + 30, 178.6, col2, 142.3)
+            .addLine(col1 + 30, 219.5, col2, 164.3)
             .render();
         Account('Refunds', '$3M')
             .red()
-            .position(col2, 160)
+            .position(col2, 190)
             .size(relativeToRevenue(3))
-            .addLine(col1 + 30, 183.3, col2, 177)
+            .addLine(col1 + 30, 224.2, col2, 209)
             .render()
         Account('Revenue', '$75M')
-            .position(col2, 30)
+            .position(col2, 50)
             .size(100)
             .render()
         Account('Variable Cloud', '$15M')
             .red()
-            .position(col3, 14)
+            .position(col3, 25)
             .size(relativeToRevenue(15))
-            .addLine(col2 + 30, 55, col3, 39)
+            .addLine(col2 + 30, 77, col3, 52)
             .render()
         Account('Support', '$1M')
             .red()
-            .position(col3, 60)
+            .position(col3, 85)
             .size(relativeToRevenue(1))
-            .addLine(col2 + 30, 65.7, col3, 75.7)
+            .addLine(col2 + 30, 87.4, col3, 102.6)
             .render()
         Account('Gross Profit', '$59M')
-            .position(col3, 89)
+            .position(col3, 125)
             .size(relativeToRevenue(59))
-            .addLine(col2 + 30, 105.7, col3, 143.4)
+            .addLine(col2 + 30, 127.5, col3, 181.4)
             .render()
         Account('Marketing', '$15M')
             .red()
-            .position(col4, 14)
+            .position(col4, 25)
             .size(relativeToRevenue(15))
-            .addLine(col3 + 30, 114, col4, 38.9)
+            .addLine(col3 + 30, 152, col4, 52)
             .render()
         Account('Development', '$8M')
             .red()
-            .position(col4, 59)
+            .position(col4, 80)
             .size(relativeToRevenue(8))
-            .addLine(col3 + 30, 129.4, col4, 79.3)
+            .addLine(col3 + 30, 167.2, col4, 102.3)
             .render()
         Account('Administration', '$1M')
             .red()
-            .position(col4, 95)
+            .position(col4, 126)
             .size(relativeToRevenue(1))
-            .addLine(col3 + 30, 135.5, col4, 110.6)
+            .addLine(col3 + 30, 173.2, col4, 143.7)
             .render()
         Account('EBITDA', '$35M')
-            .position(col4, 125)
+            .position(col4, 165)
             .size(relativeToRevenue(35))
-            .addLine(col3 + 30, 159.4, col4, 163.4)
+            .addLine(col3 + 30, 197.3, col4, 205.5)
             .render()
     });
-
+</script>
+</head>
+<body>
+<svg viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        text { font-size: 10px; }
+        text.value { fill: grey; }
+        rect.green { fill: green; }
+        rect.red { fill: red; }
+        path { fill: none; }
+        path.green { stroke: LightGreen; }
+        path.red { stroke: LightPink; }
+    </style>
+</svg>
+<script>
     const relativeBoxHeight = (baseValue, baseHeight) => (value) => value / baseValue * baseHeight 
 
     function Account(label, value) {
@@ -142,14 +156,14 @@
 
         const value = document.createElementNS(spec, "text")
         value.setAttribute('x', this.x)
-        value.setAttribute('y', this.y + 10)
+        value.setAttribute('y', this.y + 12)
         value.setAttribute('class', 'value')
         value.appendChild(document.createTextNode(this.value))
         diagram.appendChild(value)
 
         const box = document.createElementNS(spec, "rect")
         box.setAttribute('x', this.x)
-        box.setAttribute('y', this.y + 15)
+        box.setAttribute('y', this.y + 17)
         box.setAttribute('width', this.width)
         box.setAttribute('height', this.boxHeight)
         box.setAttribute('class', this.class)
@@ -168,16 +182,4 @@
         return this
     }
 </script>
-</head>
-<body>
-<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
-    <style>
-        text { font-size: 8px; }
-        text.value { fill: grey; }
-        rect.green { fill: green; }
-        rect.red { fill: red; }
-        path { fill: none; }
-        path.green { stroke: LightGreen; }
-        path.red { stroke: LightPink; }
-    </style>
 </body></html>
