@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html><head>
 <script defer="">
-    const spec = "http://www.w3.org/2000/svg";
     document.addEventListener('DOMContentLoaded', function() {
+        const [col1, col2, col3, col4] = [10, 120, 230, 340] 
         const relativeToRevenue = relativeBoxHeight(75, 100) 
+
         Account('Subscriptions', '$45M')
             .position(10, 5)
             .size(60)
@@ -76,6 +77,7 @@
     }
 
     Account.prototype.render = function() {
+        const spec = "http://www.w3.org/2000/svg";
         const diagram = document.querySelector('svg')
 
         const label = document.createElementNS(spec, "text")
