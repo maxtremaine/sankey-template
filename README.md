@@ -8,7 +8,7 @@ Take a look at [the Income Statement Template](https://github.com/maxtremaine/sa
 
 ```JavaScript
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
 
     // Set the number and positioning of columns, to be referenced by Accounts.
     const [col1, col2, col3, col4] = [20, 155, 290, 425]
