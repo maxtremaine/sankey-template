@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     Account('Subscriptions', '$45M')
         // .red() // Make the bar and line red instead of the default green.
         .position(col1, 25) // x, y coordinates from the top left.
-        .size(relativeToRevenue(45)) // Box and line height. Use .lineSize() if you want the line to be shorter.
+        .size(relativeToRevenue(45)) // Box and line height.
+        // lineSize(relativeToRevenue(25) // If you have a breakout from a box to another box the line will need to be smaller than the box.
         .addLine(col1 + 30, 72, col2, 97) // x1, y1, x2, y2 for the line. You can see how it is made in the source at the bottom of the file.
         .render();
 
